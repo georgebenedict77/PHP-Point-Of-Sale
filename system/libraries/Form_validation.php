@@ -41,6 +41,12 @@ class CI_Form_validation {
 	 * Constructor
 	 *
 	 */	
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Form_validation'), $args);
+	}
+
 	function CI_Form_validation($rules = array())
 	{	
 		$this->CI =& get_instance();
@@ -1276,3 +1282,4 @@ class CI_Form_validation {
 
 /* End of file Form_validation.php */
 /* Location: ./system/libraries/Form_validation.php */
+

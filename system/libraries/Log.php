@@ -37,6 +37,12 @@ class CI_Log {
 	 *
 	 * @access	public
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Log'), $args);
+	}
+
 	function CI_Log()
 	{
 		$config =& get_config();
@@ -115,3 +121,4 @@ class CI_Log {
 
 /* End of file Log.php */
 /* Location: ./system/libraries/Log.php */
+

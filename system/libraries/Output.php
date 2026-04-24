@@ -34,6 +34,12 @@ class CI_Output {
 	var $enable_profiler 	= FALSE;
 
 
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Output'), $args);
+	}
+
 	function CI_Output()
 	{
 		log_message('debug', "Output Class Initialized");
@@ -407,3 +413,4 @@ class CI_Output {
 
 /* End of file Output.php */
 /* Location: ./system/libraries/Output.php */
+

@@ -56,6 +56,12 @@ class CI_User_agent {
 	 * @access	public
 	 * @return	void
 	 */		
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_User_agent'), $args);
+	}
+
 	function CI_User_agent()
 	{
 		if (isset($_SERVER['HTTP_USER_AGENT']))
@@ -500,3 +506,4 @@ class CI_User_agent {
 
 /* End of file User_agent.php */
 /* Location: ./system/libraries/User_agent.php */
+

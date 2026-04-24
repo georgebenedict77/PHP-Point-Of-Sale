@@ -49,9 +49,15 @@ class CI_Loader {
 	 *
 	 * @access	public
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Loader'), $args);
+	}
+
 	function CI_Loader()
 	{	
-		$this->_ci_is_php5 = (floor(phpversion()) >= 5) ? TRUE : FALSE;
+		$this->_ci_is_php5 = version_compare(PHP_VERSION, '5.0.0', '>=') ? TRUE : FALSE;
 		$this->_ci_view_path = APPPATH.'views/';
 		$this->_ci_ob_level  = ob_get_level();
 				
@@ -1083,3 +1089,4 @@ class CI_Loader {
 
 /* End of file Loader.php */
 /* Location: ./system/libraries/Loader.php */
+

@@ -42,6 +42,12 @@ class CI_Config {
 	 * @param   boolean  true if errors should just return false, false if an error message should be displayed
 	 * @return  boolean  if the file was successfully loaded or not
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Config'), $args);
+	}
+
 	function CI_Config()
 	{
 		$this->config =& get_config();
@@ -242,3 +248,4 @@ class CI_Config {
 
 /* End of file Config.php */
 /* Location: ./system/libraries/Config.php */
+

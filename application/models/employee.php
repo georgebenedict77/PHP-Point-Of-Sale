@@ -72,8 +72,25 @@ class Employee extends Person
 	/*
 	Inserts or updates an employee
 	*/
-	function save(&$person_data, &$employee_data,&$permission_data,$employee_id=false)
+	function save(&$person_data, $person_id=false, ...$extra)
 	{
+		$employee_data = array();
+		$permission_data = array();
+		$employee_id = false;
+
+		if (is_array($person_id))
+		{
+			$employee_data = $person_id;
+			$permission_data = (isset($extra[0]) && is_array($extra[0])) ? $extra[0] : array();
+			$employee_id = isset($extra[1]) ? $extra[1] : false;
+		}
+		else
+		{
+			$employee_id = $person_id;
+			$employee_data = (isset($extra[0]) && is_array($extra[0])) ? $extra[0] : array();
+			$permission_data = (isset($extra[1]) && is_array($extra[1])) ? $extra[1] : array();
+		}
+
 		$success=false;
 		
 		//Run these queries as a transaction, we want to make sure we do all or nothing

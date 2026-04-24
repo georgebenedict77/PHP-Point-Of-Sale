@@ -72,8 +72,22 @@ class Supplier extends Person
 	/*
 	Inserts or updates a suppliers
 	*/
-	function save(&$person_data, &$supplier_data,$supplier_id=false)
+	function save(&$person_data, $person_id=false, ...$extra)
 	{
+		$supplier_data = array();
+		$supplier_id = false;
+
+		if (is_array($person_id))
+		{
+			$supplier_data = $person_id;
+			$supplier_id = isset($extra[0]) ? $extra[0] : false;
+		}
+		else
+		{
+			$supplier_id = $person_id;
+			$supplier_data = (isset($extra[0]) && is_array($extra[0])) ? $extra[0] : array();
+		}
+
 		$success=false;
 		//Run these queries as a transaction, we want to make sure we do all or nothing
 		$this->db->trans_start();

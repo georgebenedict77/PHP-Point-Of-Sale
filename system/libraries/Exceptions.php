@@ -52,6 +52,12 @@ class CI_Exceptions {
 	 * Constructor
 	 *
 	 */	
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Exceptions'), $args);
+	}
+
 	function CI_Exceptions()
 	{
 		$this->ob_level = ob_get_level();
@@ -172,3 +178,4 @@ class CI_Exceptions {
 
 /* End of file Exceptions.php */
 /* Location: ./system/libraries/Exceptions.php */
+

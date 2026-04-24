@@ -51,6 +51,12 @@ class CI_Session {
 	 * The constructor runs the session routines automatically
 	 * whenever the class is instantiated.
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Session'), $args);
+	}
+
 	function CI_Session($params = array())
 	{
 		log_message('debug', "Session Class Initialized");
@@ -310,7 +316,8 @@ class CI_Session {
 							'session_id' 	=> md5(uniqid($sessid, TRUE)),
 							'ip_address' 	=> $this->CI->input->ip_address(),
 							'user_agent' 	=> substr($this->CI->input->user_agent(), 0, 50),
-							'last_activity'	=> $this->now
+							'last_activity'	=> $this->now,
+							'user_data'		=> ''
 							);
 
 
@@ -756,3 +763,4 @@ class CI_Session {
 
 /* End of file Session.php */
 /* Location: ./system/libraries/Session.php */
+

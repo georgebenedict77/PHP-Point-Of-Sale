@@ -61,6 +61,12 @@ class CI_Input {
 	*
 	* @access	public
 	*/
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Input'), $args);
+	}
+
 	function CI_Input()
 	{
 		log_message('debug', "Input Class Initialized");
@@ -179,7 +185,7 @@ class CI_Input {
 		}
 
 		// We strip slashes if magic quotes is on to keep things consistent
-		if (get_magic_quotes_gpc())
+		if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
 		{
 			$str = stripslashes($str);
 		}
@@ -1065,3 +1071,4 @@ class CI_Input {
 
 /* End of file Input.php */
 /* Location: ./system/libraries/Input.php */
+

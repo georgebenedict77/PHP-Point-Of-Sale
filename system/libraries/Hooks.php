@@ -37,6 +37,12 @@ class CI_Hooks {
 	 * Constructor
 	 *
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Hooks'), $args);
+	}
+
 	function CI_Hooks()
 	{
 		$this->_initialize();
@@ -224,3 +230,4 @@ class CI_Hooks {
 
 /* End of file Hooks.php */
 /* Location: ./system/libraries/Hooks.php */
+

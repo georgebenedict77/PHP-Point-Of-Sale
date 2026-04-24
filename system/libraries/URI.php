@@ -42,6 +42,12 @@ class CI_URI {
 	 *
 	 * @access	public
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_URI'), $args);
+	}
+
 	function CI_URI()
 	{
 		$this->config =& load_class('Config');
@@ -584,3 +590,4 @@ class CI_URI {
 
 /* End of file URI.php */
 /* Location: ./system/libraries/URI.php */
+

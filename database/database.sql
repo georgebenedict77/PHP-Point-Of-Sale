@@ -27,14 +27,14 @@ CREATE TABLE `phppos_app_config` (
 -- 
 
 INSERT INTO `phppos_app_config` (`key`, `value`) VALUES ('address', '123 Nowhere street'),
-('company', 'PHP Point Of Sale, Inc'),
+('company', 'BenPay'),
 ('default_tax_rate', '8'),
-('email', 'admin@phppointofsale.com'),
+('email', 'admin@example.com'),
 ('fax', ''),
 ('phone', '555-555-5555'),
 ('return_policy', 'Test'),
-('version', '10.0'),
-('website', '');
+('version', '1.0.0'),
+('website', 'https://example.com');
 
 -- --------------------------------------------------------
 
@@ -174,7 +174,7 @@ CREATE TABLE `phppos_people` (
 -- Dumping data for table `phppos_people`
 -- 
 
-INSERT INTO `phppos_people` (`first_name`, `last_name`, `phone_number`, `email`, `address_1`, `address_2`, `city`, `state`, `zip`, `country`, `comments`, `person_id`) VALUES ('John', 'Doe', '555-555-5555', 'admin@phppointofsale.com', 'Address 1', '', '', '', '', '', '', 1);
+INSERT INTO `phppos_people` (`first_name`, `last_name`, `phone_number`, `email`, `address_1`, `address_2`, `city`, `state`, `zip`, `country`, `comments`, `person_id`) VALUES ('John', 'Doe', '555-555-5555', 'admin@example.com', 'Address 1', '', '', '', '', '', '', 1);
 
 -- --------------------------------------------------------
 

@@ -34,7 +34,13 @@ class CI_Base {
 
 	private static $instance;
 
-	public function CI_Base()
+	public function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Base'), $args);
+	}
+
+	function CI_Base()
 	{
 		self::$instance =& $this;
 	}
@@ -54,3 +60,4 @@ function &get_instance()
 
 /* End of file Base5.php */
 /* Location: ./system/codeigniter/Base5.php */
+

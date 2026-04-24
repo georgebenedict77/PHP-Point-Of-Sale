@@ -34,6 +34,12 @@ class CI_Language {
 	 *
 	 * @access	public
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Language'), $args);
+	}
+
 	function CI_Language()
 	{
 		log_message('debug', "Language Class Initialized");
@@ -121,3 +127,4 @@ class CI_Language {
 
 /* End of file Language.php */
 /* Location: ./system/libraries/Language.php */
+

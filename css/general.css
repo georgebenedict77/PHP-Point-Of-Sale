@@ -25,21 +25,23 @@ label.required
 {
  	float:left;
  	padding: 3px;
- 	background-color: #f2f2f2;
+ 	background-color: var(--bp-input-bg);
 }
   
 .form_field input, .form_field textarea 
 {
- 	border: 1px solid #ccc;
+ 	border: 1px solid var(--bp-border);
  	padding: 4px;
+	background-color: var(--bp-input-bg);
+	color: var(--bp-text);
 }
 
 .submit_button 
 {
 	padding: 5px;
 	color: #fff;
-	background-color: #0a6184;
-	border: 2px solid #ddd;
+	background-color: var(--bp-accent);
+	border: 2px solid var(--bp-border);
 }
 
 .small_button
@@ -99,7 +101,7 @@ label.required
 {
 	text-align:center;
 	background-color:#fffcdd;
-	border:1px solid #fff4aa;
+	border:1px solid var(--bp-border);
 	font-weight:bold;
 }
 
@@ -122,6 +124,8 @@ label.required
 input
 {
 	font-family:arial;
+	background-color: var(--bp-input-bg);
+	color: var(--bp-text);
 }
 
 .clearfix:after 

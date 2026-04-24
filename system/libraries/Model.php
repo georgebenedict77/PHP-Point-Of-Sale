@@ -33,6 +33,12 @@ class Model {
 	 *
 	 * @access public
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'Model'), $args);
+	}
+
 	function Model()
 	{
 		// If the magic __get() or __set() methods are used in a Model references can't be used.
@@ -81,3 +87,4 @@ class Model {
 
 /* End of file Model.php */
 /* Location: ./system/libraries/Model.php */
+

@@ -37,6 +37,12 @@ class Controller extends CI_Base {
 	 *
 	 * Calls the initialize() function
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'Controller'), $args);
+	}
+
 	function Controller()
 	{	
 		parent::CI_Base();
@@ -77,7 +83,7 @@ class Controller extends CI_Base {
 
 		// In PHP 5 the Loader class is run as a discreet
 		// class.  In PHP 4 it extends the Controller
-		if (floor(phpversion()) >= 5)
+		if (version_compare(PHP_VERSION, '5.0.0', '>='))
 		{
 			$this->load =& load_class('Loader');
 			$this->load->_ci_autoloader();
@@ -125,3 +131,4 @@ class Controller extends CI_Base {
 
 /* End of file Controller.php */
 /* Location: ./system/libraries/Controller.php */
+

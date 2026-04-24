@@ -2,10 +2,10 @@
 {
 	position:relative;
 	width:100%;
-	background-color:#EEEEEE;
+	background-color:var(--bp-panel-bg);
 	background-image:url(../images/checkbox_arrow.gif);
 	height:20px;
-	border-top:1px solid #CCCCCC;	
+	border-top:1px solid var(--bp-border);	
 	background-position:5px 10px;
 	background-repeat:no-repeat;	
 	padding:3px 0px 3px 0px;
@@ -28,8 +28,8 @@
 
 #table_action_header ul li span
 {
-	background-color:#0a6184;
-	border:2px solid #DDDDDD;
+	background-color:var(--bp-accent);
+	border:2px solid var(--bp-border);
 	font-size:14px;
 	padding:2px 5px 2px 5px;
 	
@@ -51,7 +51,7 @@ table.tablesorter
 {
 	position:relative;
 	width:100%;
-	border-top:3px solid #0a6184;
+	border-top:3px solid var(--bp-accent);
 	border-collapse:collapse;
 }
 
@@ -59,7 +59,7 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th
 {
 	color:#FFFFFF;
 	text-align:left;
-	background-color:#4386a1;
+	background-color:var(--bp-accent);
 	padding: 0px 5px 0px 5px;
 }
 
@@ -73,8 +73,8 @@ table.tablesorter thead tr .header
 
 table.tablesorter tbody td 
 {
-	color: #3D3D3D;
-	background-color: #FFF;
+	color: var(--bp-text);
+	background-color: var(--bp-panel-bg);
 	vertical-align: top;
 	padding: 0px 5px 0px 5px;
 	
@@ -82,17 +82,17 @@ table.tablesorter tbody td
 
 table.tablesorter tbody td 
 {
-	border-bottom:1px solid #DDDDDD;
+	border-bottom:1px solid var(--bp-border);
 }
 
 table.tablesorter tbody td.over
 {
-	background-color:#CCCCCC;
+	background-color:var(--bp-body-bg);
 }
 
 table.tablesorter tbody td.selected
 {
-	background-color:#BBBBBB;
+	background-color:var(--bp-body-bg);
 }
 
 table.tablesorter thead tr .headerSortUp 
@@ -117,10 +117,10 @@ table.innertable
 
 table.innertable thead tr th 
 {
-	background-color: #0a6184;
+	background-color: var(--bp-accent);
 }
 
 table.innertable tbody tr td 
 {
-	background-color: #DDD;
+	background-color: var(--bp-body-bg);
 }

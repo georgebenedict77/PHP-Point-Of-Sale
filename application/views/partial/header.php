@@ -4,7 +4,11 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<base href="<?php echo base_url();?>" />
-	<title><?php echo $this->config->item('company').' -- '.$this->lang->line('common_powered_by').' PHP Point Of Sale' ?></title>
+	<?php
+	$company_name = $this->config->item('company') ? $this->config->item('company') : 'BenPay';
+	$app_version = $this->config->item('version') ? $this->config->item('version') : '1.0.0';
+	?>
+	<title><?php echo htmlspecialchars($company_name).' POS'; ?></title>
 	<link rel="stylesheet" rev="stylesheet" href="<?php echo base_url();?>css/phppos.css" />
 	<link rel="stylesheet" rev="stylesheet" href="<?php echo base_url();?>css/phppos_print.css"  media="print"/>
 	<script src="<?php echo base_url();?>js/jquery-1.2.6.min.js" type="text/javascript" language="javascript" charset="UTF-8"></script>
@@ -24,14 +28,34 @@ html {
     overflow: auto;
 }
 </style>
+<script type="text/javascript">
+(function()
+{
+	var themeStorageKey = 'benpay_theme';
+	var savedTheme = 'light';
+	try
+	{
+		var storedTheme = window.localStorage.getItem(themeStorageKey);
+		if (storedTheme == 'dark' || storedTheme == 'light')
+		{
+			savedTheme = storedTheme;
+		}
+	}
+	catch (e)
+	{
+		savedTheme = 'light';
+	}
+	document.documentElement.className = (document.documentElement.className + ' theme-' + savedTheme).replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+})();
+</script>
 
 </head>
-<body>
+<body class="theme-light">
 <div id="menubar">
 	<div id="menubar_container">
 		<div id="menubar_company_info">
-		<span id="company_title"><?php echo $this->config->item('company'); ?></span><br />
-		<span style='font-size:8pt;'><?php echo $this->lang->line('common_powered_by').' PHP Point Of Sale'; ?></span>
+		<span id="company_title"><?php echo htmlspecialchars($company_name); ?></span><br />
+		<span style='font-size:8pt;'><?php echo $this->lang->line('common_version_label').' '.htmlspecialchars($app_version); ?></span>
 	</div>
 
 		<div id="menubar_navigation">
@@ -61,10 +85,56 @@ html {
 		</div>
 
 		<div id="menubar_date">
-		<?php echo date('F d, Y') ?>
+		<?php echo date('F d, Y') ?><br />
+		<a href="#" id="theme_toggle_link" data-dark-label="<?php echo htmlspecialchars($this->lang->line('common_toggle_dark_mode')); ?>" data-light-label="<?php echo htmlspecialchars($this->lang->line('common_toggle_light_mode')); ?>"></a>
 		</div>
 
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function()
+{
+	var themeStorageKey = 'benpay_theme';
+	var currentTheme = 'light';
+
+	function applyTheme(mode)
+	{
+		var bodyClass = $('body').attr('class') || '';
+		bodyClass = bodyClass.replace(/\btheme-light\b/g, '').replace(/\btheme-dark\b/g, '').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+		$('body').attr('class', (bodyClass ? bodyClass + ' ' : '') + 'theme-' + mode);
+		$('html').removeClass('theme-light').removeClass('theme-dark').addClass('theme-' + mode);
+		$('#theme_toggle_link').text(mode == 'dark' ? $('#theme_toggle_link').attr('data-light-label') : $('#theme_toggle_link').attr('data-dark-label'));
+	}
+
+	try
+	{
+		var storedTheme = window.localStorage.getItem(themeStorageKey);
+		if (storedTheme == 'dark' || storedTheme == 'light')
+		{
+			currentTheme = storedTheme;
+		}
+	}
+	catch (e)
+	{
+		currentTheme = 'light';
+	}
+
+	applyTheme(currentTheme);
+
+	$('#theme_toggle_link').click(function(e)
+	{
+		e.preventDefault();
+		currentTheme = currentTheme == 'dark' ? 'light' : 'dark';
+		try
+		{
+			window.localStorage.setItem(themeStorageKey, currentTheme);
+		}
+		catch (err)
+		{
+		}
+		applyTheme(currentTheme);
+	});
+});
+</script>
 <div id="content_area_wrapper">
 <div id="content_area">

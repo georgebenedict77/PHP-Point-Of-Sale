@@ -72,8 +72,22 @@ class Customer extends Person
 	/*
 	Inserts or updates a customer
 	*/
-	function save(&$person_data, &$customer_data,$customer_id=false)
+	function save(&$person_data, $person_id=false, ...$extra)
 	{
+		$customer_data = array();
+		$customer_id = false;
+
+		if (is_array($person_id))
+		{
+			$customer_data = $person_id;
+			$customer_id = isset($extra[0]) ? $extra[0] : false;
+		}
+		else
+		{
+			$customer_id = $person_id;
+			$customer_data = (isset($extra[0]) && is_array($extra[0])) ? $extra[0] : array();
+		}
+
 		$success=false;
 		//Run these queries as a transaction, we want to make sure we do all or nothing
 		$this->db->trans_start();

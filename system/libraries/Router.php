@@ -43,6 +43,12 @@ class CI_Router {
 	 *
 	 * Runs the route mapping function.
 	 */
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_Router'), $args);
+	}
+
 	function CI_Router()
 	{
 		$this->config =& load_class('Config');
@@ -387,3 +393,4 @@ class CI_Router {
 
 /* End of file Router.php */
 /* Location: ./system/libraries/Router.php */
+

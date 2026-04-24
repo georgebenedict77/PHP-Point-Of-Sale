@@ -78,6 +78,12 @@ class CI_DB_driver {
 	 *
 	 * @param array
 	 */	
+	function __construct()
+	{
+		$args = func_get_args();
+		call_user_func_array(array($this, 'CI_DB_driver'), $args);
+	}
+
 	function CI_DB_driver($params)
 	{
 		if (is_array($params))
@@ -1364,3 +1370,4 @@ class CI_DB_driver {
 
 /* End of file DB_driver.php */
 /* Location: ./system/database/DB_driver.php */
+

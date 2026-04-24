@@ -20,6 +20,16 @@ echo form_open('config/save/',array('id'=>'config_form'));
 </div>
 
 <div class="field_row clearfix">	
+<?php echo form_label($this->lang->line('config_version').':', 'version',array('class'=>'wide required')); ?>
+	<div class='form_field'>
+	<?php echo form_input(array(
+		'name'=>'version',
+		'id'=>'version',
+		'value'=>$this->config->item('version')));?>
+	</div>
+</div>
+
+<div class="field_row clearfix">	
 <?php echo form_label($this->lang->line('config_address').':', 'address',array('class'=>'wide required')); ?>
 	<div class='form_field'>
 	<?php echo form_textarea(array(
@@ -173,6 +183,7 @@ $(document).ready(function()
 		rules: 
 		{
 			company: "required",
+			version: "required",
 			address: "required",
     		phone: "required",
     		default_tax_rate:
@@ -187,6 +198,7 @@ $(document).ready(function()
 		messages: 
 		{
      		company: "<?php echo $this->lang->line('config_company_required'); ?>",
+     		version: "<?php echo $this->lang->line('config_version_required'); ?>",
      		address: "<?php echo $this->lang->line('config_address_required'); ?>",
      		phone: "<?php echo $this->lang->line('config_phone_required'); ?>",
      		default_tax_rate:
